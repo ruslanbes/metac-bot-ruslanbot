@@ -686,8 +686,8 @@ if __name__ == "__main__":
                 allowed_tries=2,
             ),
             "summarizer": "openrouter/google/gemini-3-pro-preview",  # Optional: use Gemini for summarizer too
-            "researcher": "openrouter/google/gemini-2.0-flash-exp",  # Keep AskNews for research, or change to Gemini if preferred
-            "parser": "openrouter/google/gemini-2.0-flash-exp",  # Optional: use Gemini for parsing too
+            "researcher": "openrouter/google/gemini-3-flash-preview",  # Keep AskNews for research, or change to Gemini if preferred
+            "parser": "openrouter/google/gemini-3-flash-preview",  # Optional: use Gemini for parsing too
         },
     )
 
