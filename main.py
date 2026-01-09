@@ -682,7 +682,7 @@ if __name__ == "__main__":
             "default": GeneralLlm(
                 model="openrouter/google/gemini-3-pro-preview",  # Using Gemini 3 Pro via OpenRouter
                 temperature=0.3,
-                timeout=40,
+                timeout=160,
                 allowed_tries=2,
             ),
             "summarizer": "openrouter/google/gemini-3-pro-preview",  # Optional: use Gemini for summarizer too
