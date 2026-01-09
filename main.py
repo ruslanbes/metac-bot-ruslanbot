@@ -406,16 +406,20 @@ class SpringTemplateBot2026(ForecastBot):
             (f) A brief description of an unexpected scenario that results in a high outcome.
 
             {self._get_conditional_disclaimer_if_necessary(question)}
-            Set wide 90/10 confidence intervals to account for unknown unknowns.
 
             The last thing you write is your final answer as:
             "
-            Percentile 10: XX (lowest number value)
+            Percentile 5: XX (lowest number value)
+            Percentile 10: XX
             Percentile 20: XX
+            Percentile 30: XX
             Percentile 40: XX
+            Percentile 50: XX
             Percentile 60: XX
+            Percentile 70: XX
             Percentile 80: XX
-            Percentile 90: XX (highest number value)
+            Percentile 90: XX
+            Percentile 95: XX (highest number value)
             "
             """
         )
@@ -504,16 +508,20 @@ class SpringTemplateBot2026(ForecastBot):
             (f) A brief description of an unexpected scenario that results in a high outcome.
 
             {self._get_conditional_disclaimer_if_necessary(question)}
-            You remind yourself that good forecasters are humble and set wide 90/10 confidence intervals to account for unknown unknowns.
 
             The last thing you write is your final answer as:
             "
-            Percentile 10: YYYY-MM-DD (oldest date)
+            Percentile 5: YYYY-MM-DD (oldest date)
+            Percentile 10: YYYY-MM-DD
             Percentile 20: YYYY-MM-DD
+            Percentile 30: YYYY-MM-DD
             Percentile 40: YYYY-MM-DD
+            Percentile 50: YYYY-MM-DD
             Percentile 60: YYYY-MM-DD
+            Percentile 70: YYYY-MM-DD
             Percentile 80: YYYY-MM-DD
-            Percentile 90: YYYY-MM-DD (newest date)
+            Percentile 90: YYYY-MM-DD
+            Percentile 95: YYYY-MM-DD (newest date)
             "
             """
         )
@@ -714,7 +722,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--mode",
         type=str,
-        choices=["tournament", "metaculus_cup", "test_questions"],
+        choices=["tournament", "metaculus_cup", "test_questions", "question"],
         default="tournament",
         help="Specify the run mode (default: tournament)",
     )
@@ -724,17 +732,24 @@ if __name__ == "__main__":
         default=None,
         help="Tournament ID to forecast on (for tournament mode). If provided, forecasts on this tournament instead of AI Competition + MiniBench.",
     )
+    parser.add_argument(
+        "--question",
+        type=str,
+        default=None,
+        help="Question URL or ID to forecast on (for question mode). Can be a URL or numeric ID. Example: https://www.metaculus.com/questions/12345/... or 12345",
+    )
     args = parser.parse_args()
-    run_mode: Literal["tournament", "metaculus_cup", "test_questions"] = args.mode
+    run_mode: Literal["tournament", "metaculus_cup", "test_questions", "question"] = args.mode
     assert run_mode in [
         "tournament",
         "metaculus_cup",
         "test_questions",
+        "question",
     ], "Invalid run mode"
 
     template_bot = SpringTemplateBot2026(
         research_reports_per_question=1,
-        predictions_per_research_report=5,
+        predictions_per_research_report=2,
         use_research_summary_to_forecast=False,
         publish_reports_to_metaculus=True,
         folder_to_save_reports_to=None,
@@ -802,5 +817,23 @@ if __name__ == "__main__":
         ]
         forecast_reports = asyncio.run(
             template_bot.forecast_questions(questions, return_exceptions=True)
+        )
+    elif run_mode == "question":
+        if not args.question:
+            raise ValueError("--question is required for question mode")
+        template_bot.skip_previously_forecasted_questions = False
+        
+        # Parse input: if it's a numeric ID, convert to URL; otherwise use as-is
+        question_input = args.question.strip()
+        if question_input.isdigit():
+            # It's a numeric ID, convert to URL
+            question_url = f"https://www.metaculus.com/questions/{question_input}/"
+        else:
+            # It's already a URL, use as-is
+            question_url = question_input
+        
+        question = client.get_question_by_url(question_url)
+        forecast_reports = asyncio.run(
+            template_bot.forecast_questions([question], return_exceptions=True)
         )
     template_bot.log_report_summary(forecast_reports)

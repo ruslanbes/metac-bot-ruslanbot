@@ -1,4 +1,4 @@
-name: Forecast Market Pulse
+name: Forecast on POTUS
 
 on:
   workflow_dispatch:

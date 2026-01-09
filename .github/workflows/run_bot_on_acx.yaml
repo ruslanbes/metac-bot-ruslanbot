@@ -1,9 +1,9 @@
-name: Forecast on Market Pulse
+name: Forecast on ACX
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 1 */5 * *" # runs at 1:00 AM every 5 days
+    - cron: "0 3 */30 * *" # runs at 3:00 AM every 30 days
 
 # Add concurrency group to prevent parallel runs
 concurrency:
@@ -32,7 +32,7 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Run bot
         run: |
-          poetry run python main.py --mode tournament --tournament-id "32917"
+          poetry run python main.py --mode tournament --tournament-id "32880"
         # this reads the environment variables from the github repository.
         # Store under Settings --> Secrets and variables --> Actions
         env:
