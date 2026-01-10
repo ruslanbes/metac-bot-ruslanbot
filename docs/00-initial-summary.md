@@ -17,13 +17,13 @@ The repository serves as a starting point for developers to build AI-powered for
 
 ### Core Files
 
-- **`main.py`** (729 lines): Recommended template using the `forecasting-tools` framework
+- **`main.py`**: Recommended template using the `forecasting-tools` framework
   - Object-oriented design with `SpringTemplateBot2026` class
   - Handles API interactions, research, and forecasting logic
   - Supports multiple question types with specialized handlers
   - Uses LLM-based output parsing via `structure_output`
 
-- **`main_with_no_framework.py`** (1,548 lines): Minimal-dependency implementation
+- **`main_with_no_framework.py`**: Minimal-dependency implementation
   - Procedural approach without framework dependencies
   - Direct API calls to Metaculus
   - Manual parsing and CDF generation
@@ -34,7 +34,7 @@ The repository serves as a starting point for developers to build AI-powered for
   - Key dependencies: `forecasting-tools`, `openai`, `asknews`, `numpy`, `requests`
   - Development dependencies: `ipykernel`
 
-- **`README.md`**: Comprehensive documentation
+- **`README.md`**: Documentation
   - Setup instructions
   - API key configuration
   - GitHub Actions automation guide
@@ -43,7 +43,7 @@ The repository serves as a starting point for developers to build AI-powered for
 
 ### Documentation
 
-- **`docs/`**: Directory for documentation files (currently empty, this summary is the first)
+- **`docs/`**: Custom improvements and analysis
 
 ## Key Features
 
@@ -135,9 +135,7 @@ Optional (for research):
 
 ### GitHub Actions
 
-- Automated runs every 30 minutes
-- Workflow file: `.github/workflows/daily_run_simple_bot.yaml`
-- Requires repository secrets for API keys
+- Automated runs to forecast on tournaments
 
 ### Local Execution
 
@@ -210,7 +208,7 @@ poetry run python main.py --mode test_questions
 ## Version Information
 
 - **Template Version**: Spring 2026
-- **Python Requirement**: ^3.11
+- **Python Requirement**: ^3.11 (3.14 fails, but 3.12 works)
 - **Last Major Updates**:
   - Additional prompting for numeric questions (percentile ordering)
   - Support for conditional and date questions

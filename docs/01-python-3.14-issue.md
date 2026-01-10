@@ -5,7 +5,14 @@
 When running the bot with Python 3.14, you encounter the following error:
 
 ```
-RuntimeError: Timeout context manager should be used inside a task
+2026-01-09 12:56:56,218 - forecasting_tools.forecast_bots.forecast_bot - ERROR - Exception occurred during forecasting:
+  + Exception Group Traceback (most recent call last):
+  |   File ".../metac-bot-template/.venv/lib/python3.14/site-packages/forecasting_tools/forecast_bots/forecast_bot.py", line 341, in _run_individual_question_with_error_propagation
+  |     return await self._run_individual_question(question)
+  
+...
+
+RuntimeError: 4 errors occurred while forecasting: [ExceptionGroup("1 sub-exceptions -> Error while processing question url: 'https://www.metaculus.com/questions/578': 1 sub-exceptions -> All 1 research reports/predictions failed: Errors: ['APIError: litellm.APIError: APIError: OpenrouterException - Timeout context manager should be used inside a task']"
 ```
 
 This error occurs in the `aiohttp` library used by `litellm` when making API calls to OpenRouter (or other LLM providers).
@@ -51,7 +58,6 @@ Try updating `litellm` and `aiohttp` to their latest versions, which might have 
 poetry update litellm aiohttp
 ```
 
-However, as of January 2025, Python 3.14 support may still be incomplete in these libraries.
 
 ### Solution 3: Disable Research (Workaround)
 

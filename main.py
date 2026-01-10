@@ -1,5 +1,6 @@
 import argparse
 import asyncio
+import json
 import logging
 from datetime import datetime, timezone
 import dotenv
@@ -122,8 +123,8 @@ class SpringTemplateBot2026(ForecastBot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Load context files
-        self._research_context = self._load_context_file("context/research_context.txt")
-        self._forecast_context = self._load_context_file("context/forecast_context.txt")
+        self._research_context = self._load_context_file("context/research.txt")
+        self._forecast_context = self._load_context_file("context/forecast.txt")
 
     def _load_context_file(self, file_path: str) -> str:
         """
@@ -148,17 +149,98 @@ class SpringTemplateBot2026(ForecastBot):
             logger.warning(f"Error loading context file {file_path}: {e}. Using empty context.")
             return ""
 
+    def _get_question_categories(self, question: MetaculusQuestion) -> list[str]:
+        """
+        Extract category slugs from question's api_json.
+        Returns list of category slugs (e.g., ['politics', 'geopolitics']).
+        """
+        try:
+            categories = question.api_json.get("projects", {}).get("category", [])
+            slugs = [cat.get("slug") for cat in categories if cat.get("slug")]
+            logger.debug(f"Question categories: {slugs}")
+            return slugs
+        except Exception as e:
+            logger.warning(f"Failed to extract categories: {e}")
+            return []
+
+    def _load_category_context(self, context_type: str, category_slug: str) -> str:
+        """
+        Load context for a specific category.
+        context_type: 'research' or 'forecast'
+        category_slug: e.g., 'politics', 'geopolitics'
+        """
+        file_path = f"context/{category_slug}/{context_type}.txt"
+        return self._load_context_file(file_path)
+
+    def _get_research_context(self, question: MetaculusQuestion) -> str:
+        """
+        Get merged research context: general + category-specific.
+        """
+        context_parts = []
+        used_contexts = []
+        
+        # Load general research context
+        if self._research_context:
+            context_parts.append(self._research_context)
+            used_contexts.append("General")
+        
+        # Load category-specific contexts
+        categories = self._get_question_categories(question)
+        for category_slug in categories:
+            category_context = self._load_category_context("research", category_slug)
+            if category_context:
+                context_parts.append(f"[{category_slug.title()} Context]\n{category_context}")
+                used_contexts.append(category_slug.title())
+        
+        if used_contexts:
+            logger.info(f"Used research contexts: {', '.join(used_contexts)}")
+        
+        return "\n\n".join(context_parts) if context_parts else ""
+
+    def _get_forecast_context(self, question: MetaculusQuestion) -> str:
+        """
+        Get merged forecast context: general + category-specific.
+        """
+        context_parts = []
+        used_contexts = []
+        
+        # Load general forecast context
+        if self._forecast_context:
+            context_parts.append(self._forecast_context)
+            used_contexts.append("General")
+        
+        # Load category-specific contexts
+        categories = self._get_question_categories(question)
+        for category_slug in categories:
+            category_context = self._load_category_context("forecast", category_slug)
+            if category_context:
+                context_parts.append(f"[{category_slug.title()} Context]\n{category_context}")
+                used_contexts.append(category_slug.title())
+        
+        if used_contexts:
+            logger.info(f"Used forecast contexts: {', '.join(used_contexts)}")
+        
+        return "\n\n".join(context_parts) if context_parts else ""
+
     ##################################### RESEARCH #####################################
 
     async def run_research(self, question: MetaculusQuestion) -> str:
         async with self._concurrency_limiter:
+            # Dump api_json to file for inspection
+            try:
+                with open("api_json.json", "w", encoding="utf-8") as f:
+                    json.dump(question.api_json, f, indent=2, default=str)
+            except Exception as e:
+                logger.warning(f"Failed to dump api_json: {e}")
+            
             research = ""
             researcher = self.get_llm("researcher")
 
-            # Add research context if available
+            # Add research context if available (general + category-specific)
             research_context_section = ""
-            if self._research_context:
-                research_context_section = f"\n\nAdditional Research Guidelines:\n{self._research_context}\n"
+            merged_research_context = self._get_research_context(question)
+            if merged_research_context:
+                research_context_section = f"\n\nAdditional Research Guidelines:\n{merged_research_context}\n"
 
             prompt = clean_indents(
                 f"""
@@ -212,10 +294,11 @@ class SpringTemplateBot2026(ForecastBot):
     async def _run_forecast_on_binary(
         self, question: BinaryQuestion, research: str
     ) -> ReasonedPrediction[float]:
-        # Add forecast context if available
+        # Add forecast context if available (general + category-specific)
         forecast_context_section = ""
-        if self._forecast_context:
-            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{self._forecast_context}\n"
+        merged_forecast_context = self._get_forecast_context(question)
+        if merged_forecast_context:
+            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{merged_forecast_context}\n"
 
         prompt = clean_indents(
             f"""
@@ -279,10 +362,11 @@ class SpringTemplateBot2026(ForecastBot):
     async def _run_forecast_on_multiple_choice(
         self, question: MultipleChoiceQuestion, research: str
     ) -> ReasonedPrediction[PredictedOptionList]:
-        # Add forecast context if available
+        # Add forecast context if available (general + category-specific)
         forecast_context_section = ""
-        if self._forecast_context:
-            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{self._forecast_context}\n"
+        merged_forecast_context = self._get_forecast_context(question)
+        if merged_forecast_context:
+            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{merged_forecast_context}\n"
 
         prompt = clean_indents(
             f"""
@@ -363,10 +447,11 @@ class SpringTemplateBot2026(ForecastBot):
         upper_bound_message, lower_bound_message = (
             self._create_upper_and_lower_bound_messages(question)
         )
-        # Add forecast context if available
+        # Add forecast context if available (general + category-specific)
         forecast_context_section = ""
-        if self._forecast_context:
-            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{self._forecast_context}\n"
+        merged_forecast_context = self._get_forecast_context(question)
+        if merged_forecast_context:
+            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{merged_forecast_context}\n"
 
         prompt = clean_indents(
             f"""
@@ -466,10 +551,11 @@ class SpringTemplateBot2026(ForecastBot):
         upper_bound_message, lower_bound_message = (
             self._create_upper_and_lower_bound_messages(question)
         )
-        # Add forecast context if available
+        # Add forecast context if available (general + category-specific)
         forecast_context_section = ""
-        if self._forecast_context:
-            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{self._forecast_context}\n"
+        merged_forecast_context = self._get_forecast_context(question)
+        if merged_forecast_context:
+            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{merged_forecast_context}\n"
 
         prompt = clean_indents(
             f"""
@@ -762,9 +848,9 @@ if __name__ == "__main__":
                 timeout=160,
                 allowed_tries=2,
             ),
-            "summarizer": "openrouter/google/gemini-3-flash-preview",  # Optional: use Gemini for summarizer too
-            "researcher": "openrouter/perplexity/sonar",  # Keep AskNews for research, or change to Gemini if preferred
-            "parser": "openrouter/google/gemini-3-flash-preview",  # Optional: use Gemini for parsing too
+            "summarizer": "openrouter/google/gemini-3-flash-preview",  # Optional: use Gemini for summarizer (not used now)
+            "researcher": "openrouter/perplexity/sonar",  # Use AskNews for research, or change to other model
+            "parser": "openrouter/google/gemini-3-flash-preview",  # Optional: use Gemini for parsing
         },
     )
 

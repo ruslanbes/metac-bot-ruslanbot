@@ -1,0 +1,4 @@
+# Research Context
+# This context is added to every research prompt
+
+- Look for absence of usual events and presence of unusual events and point out if you found anything

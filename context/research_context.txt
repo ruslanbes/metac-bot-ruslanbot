@@ -1,5 +1,0 @@
-# Research Context
-# This context is added to every research prompt
-
-- Look for absence of usual events and presence of unusual events
-- If the question concerns politics, geopolitics or economics, look for similar events and patterns in the years preceding World War I, World War II, and the dissolution of the Soviet Union

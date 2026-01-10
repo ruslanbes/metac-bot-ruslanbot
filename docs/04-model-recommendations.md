@@ -4,12 +4,12 @@
 
 ### **Default** (Forecasting Model)
 - **Purpose**: Generates the main reasoning and probability forecasts
-- **Usage**: Called `predictions_per_research_report` times per research report (default: 5 times)
+- **Usage**: Called `predictions_per_research_report` times per research report (currently: 2 times)
 - **Requirements**: 
   - Strong reasoning capabilities
   - Good at probabilistic thinking
   - Handles complex prompts well
-- **Current**: Gemini 3 Pro ✅ (Good choice - this is your most important model)
+- **Current**: `openrouter/google/gemini-3-pro-preview` ✅ (Good choice - this is your most important model)
 
 ### **Researcher**
 - **Purpose**: Generates research summaries about questions
@@ -18,7 +18,7 @@
   - Good at synthesizing information
   - Can provide concise but detailed summaries
   - Doesn't need to be as powerful as the default model
-- **Current**: Gemini 3 Pro ⚠️ (Likely overkill - consider cheaper alternatives)
+- **Current**: `openrouter/perplexity/sonar` ✅ (Good choice - specialized for research)
 
 ### **Parser**
 - **Purpose**: Parses free-form LLM reasoning into structured formats (probabilities, percentiles, option lists)
@@ -28,12 +28,12 @@
   - Reliable extraction of data from text
   - Good at format compliance
   - Speed matters (called frequently)
-- **Current**: Gemini 3 Pro ⚠️ (Likely overkill - smaller models often work better)
+- **Current**: `openrouter/google/gemini-3-flash-preview` ✅ (Good choice - fast, cheap, reliable)
 
 ### **Summarizer**
 - **Purpose**: Summarizes research reports (if `use_research_summary_to_forecast=True`)
-- **Usage**: Only used if research summarization is enabled (currently disabled)
-- **Current**: Gemini 3 Pro (Not currently used)
+- **Usage**: Only used if research summarization is enabled (currently disabled: `use_research_summary_to_forecast=False`)
+- **Current**: `openrouter/google/gemini-3-flash-preview` (Not currently used)
 
 ## Recommendations
 
@@ -117,40 +117,66 @@ llms={
 - Use Flash for everything except the main forecasting
 - Significant cost savings while maintaining good quality
 
+## Current Configuration
+
+```python
+llms={
+    "default": GeneralLlm(
+        model="openrouter/google/gemini-3-pro-preview",
+        temperature=0.3,
+        timeout=160,
+        allowed_tries=2,
+    ),
+    "summarizer": "openrouter/google/gemini-3-flash-preview",  # Not used (use_research_summary_to_forecast=False)
+    "researcher": "openrouter/perplexity/sonar",
+    "parser": "openrouter/google/gemini-3-flash-preview",
+}
+```
+
+**Settings:**
+- `predictions_per_research_report=2` (2 forecasts per research report)
+- `research_reports_per_question=1` (1 research report per question)
+- `use_research_summary_to_forecast=False` (summarizer not used)
+
 ## Model Comparison
 
 | Model | Best For | Speed | Cost | Structured Output |
 |-------|----------|-------|------|-------------------|
 | **Gemini 3 Pro** | Complex reasoning, forecasting | Medium | High | Good |
+| **Gemini 3 Flash** | Fast tasks, parsing, research | Very Fast | Low | Excellent |
+| **Perplexity Sonar** | Research synthesis, web search | Medium | Medium | N/A |
 | **Gemini 2.0 Flash** | Fast tasks, parsing, research | Very Fast | Low | Excellent |
 | **GPT-4o-mini** | Structured output, parsing | Fast | Low-Medium | Excellent |
 | **AskNews** | Research synthesis | Medium | Free/Low | N/A |
 
 ## Cost Analysis
 
-Assuming you forecast on 100 questions with 5 predictions each:
+Assuming you forecast on 100 questions with 2 predictions each (current setting):
 
-**Current Setup (All Gemini 3 Pro):**
-- Default: 500 calls × $X = High cost
-- Researcher: 100 calls × $X = Medium cost  
-- Parser: 500 calls × $X = High cost
+**Current Setup:**
+- Default: 200 calls × Gemini 3 Pro = High cost
+- Researcher: 100 calls × Perplexity Sonar = Medium cost  
+- Parser: 200 calls × Gemini 3 Flash = Low cost
+- **Total**: Medium-High (optimized for cost)
+
+**Previous Setup (All Gemini 3 Pro):**
+- Default: 200 calls × Gemini 3 Pro = High cost
+- Researcher: 100 calls × Gemini 3 Pro = High cost  
+- Parser: 200 calls × Gemini 3 Pro = High cost
 - **Total**: Very High
 
-**Recommended Setup (Option 1):**
-- Default: 500 calls × $X = High cost (necessary)
-- Researcher: 100 calls × AskNews (free) or Flash ($Y << $X) = Low cost
-- Parser: 500 calls × Flash ($Y << $X) = Low cost
-- **Total**: Much Lower (60-80% savings on parser/researcher)
+**Savings**: Current setup saves ~60-70% on researcher and parser costs compared to using Gemini 3 Pro for everything.
 
 ## Specific Recommendations
 
 ### For Researcher:
-1. **Best**: `"asknews/news-summaries"` or `"asknews/deep-research/medium-depth"` (if you have AskNews)
-2. **Good**: `"openrouter/google/gemini-2.0-flash-exp"` (fast, cheap, good quality)
-3. **Alternative**: `"openrouter/openai/gpt-4o-mini"` (reliable, slightly more expensive)
+1. **Current**: `"openrouter/perplexity/sonar"` ✅ (Specialized for research with web search capabilities)
+2. **Alternative**: `"asknews/news-summaries"` or `"asknews/deep-research/medium-depth"` (if you have AskNews)
+3. **Budget option**: `"openrouter/google/gemini-3-flash-preview"` (fast, cheap, good quality)
+4. **Other**: `"openrouter/openai/gpt-4o-mini"` (reliable, slightly more expensive)
 
 ### For Parser:
-1. **Best**: `"openrouter/google/gemini-2.0-flash-exp"` (fast, cheap, excellent at structured output)
+1. **Current**: `"openrouter/google/gemini-3-flash-preview"` ✅ (fast, cheap, excellent at structured output)
 2. **Alternative**: `"openrouter/openai/gpt-4o-mini"` (very reliable, good at following instructions)
 3. **Avoid**: Large expensive models (overkill for parsing)
 
@@ -166,11 +192,27 @@ Check:
 2. **Research quality**: Is research useful for forecasting?
 3. **Cost**: Monitor your API usage
 
+## Current Setup Analysis
+
+**Your current configuration is well-optimized:**
+- ✅ **Default**: Gemini 3 Pro - Best choice for forecasting quality
+- ✅ **Researcher**: Perplexity Sonar - Specialized for research with web search
+- ✅ **Parser**: Gemini 3 Flash - Fast, cheap, reliable for structured output
+- ✅ **Predictions per report**: 2 (good balance between quality and cost)
+
+**This setup provides:**
+- High-quality forecasts (Gemini 3 Pro)
+- Good research quality (Perplexity Sonar with web search)
+- Cost-effective parsing (Gemini 3 Flash)
+- Reasonable total cost (2 predictions per report instead of 5)
+
 ## Final Recommendation
 
-**Start with Option 1** (Cost-Optimized):
-- Keep Gemini 3 Pro for forecasting (most important)
-- Use AskNews for research (if available) or Gemini Flash
-- Use Gemini Flash for parsing (fast, cheap, reliable)
+**Your current setup is excellent!** ✅
 
-This gives you the best balance of quality and cost. You can always upgrade the parser if you notice parsing errors.
+If you want to experiment:
+- **For better research**: Consider `asknews/deep-research/medium-depth` if you have AskNews access
+- **For cost savings**: You could try `gemini-3-flash-preview` for researcher (but Perplexity Sonar is better for research)
+- **For more forecasts**: Increase `predictions_per_research_report` to 3-5 if you want more robust aggregations
+
+The current configuration strikes a good balance between quality and cost.

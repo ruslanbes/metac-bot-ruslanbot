@@ -36,30 +36,32 @@ poetry install
 
 **Auto-switching:** pyenv will automatically switch to the version specified in `.python-version` when you `cd` into the directory.
 
-### 2. rtx (formerly mise) - Modern & Fast ⭐ Recommended
+### 2. mise (formerly rtx) - Modern & Fast ⭐ Recommended
 
-**rtx** (formerly mise) is a modern, fast version manager that supports Python and many other tools. It can automatically read `pyproject.toml` and switch versions.
+**mise** (formerly rtx) is a modern, fast version manager that supports Python and many other tools. It can automatically read `pyproject.toml` and switch versions.
+
+**Note:** The project was renamed from "rtx" to "mise" to avoid confusion with NVIDIA's RTX graphics cards.
 
 **Installation (macOS):**
 ```bash
-brew install rtx
+brew install mise
 ```
 
 **Setup:**
 ```bash
 # Add to ~/.zshrc:
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 ```
 
 **Usage:**
 ```bash
-# rtx automatically reads pyproject.toml and installs/uses the correct Python version
+# mise automatically reads pyproject.toml and installs/uses the correct Python version
 cd /path/to/project
-rtx install python@3.12  # Install if needed
-# rtx will automatically use the version from pyproject.toml
+mise install python@3.12  # Install if needed
+# mise will automatically use the version from pyproject.toml
 ```
 
-**Auto-switching:** rtx automatically detects `pyproject.toml` and switches Python versions when you enter the directory.
+**Auto-switching:** mise automatically detects `pyproject.toml` and switches Python versions when you enter the directory.
 
 ### 3. asdf - Multi-language Version Manager
 
@@ -121,23 +123,23 @@ use pyenv 3.12.0
 
 ## Quick Setup Guide for This Project
 
-### Option A: Using rtx (Easiest) ⭐
+### Option A: Using mise (Easiest) ⭐
 
 ```bash
-# 1. Install rtx
-brew install rtx
+# 1. Install mise
+brew install mise
 
 # 2. Add to ~/.zshrc
-echo 'eval "$(rtx activate zsh)"' >> ~/.zshrc
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
 source ~/.zshrc
 
 # 3. In your project directory
 cd /Users/ruslanbes/projects/metaculus/metac-bot-template
-rtx install python@3.12  # Install Python 3.12
-rtx use python@3.12       # Use it for this project
+mise install python@3.12  # Install Python 3.12
+mise use python@3.12       # Use it for this project
 
-# 4. Poetry will use the rtx-managed Python
-poetry env use $(rtx which python)
+# 4. Poetry will use the mise-managed Python
+poetry env use $(mise which python)
 poetry install
 ```
 
@@ -171,14 +173,14 @@ poetry install
 
 | Tool | Auto-detects pyproject.toml | Speed | Ease of Use | Multi-language |
 |------|------------------------------|-------|-------------|---------------|
-| **rtx** | ✅ Yes | ⚡ Very Fast | ⭐⭐⭐⭐⭐ | ✅ Yes |
+| **mise** | ✅ Yes | ⚡ Very Fast | ⭐⭐⭐⭐⭐ | ✅ Yes |
 | **asdf** | ⚠️ With plugin | 🐢 Slower | ⭐⭐⭐ | ✅ Yes |
 | **pyenv** | ❌ No (needs .python-version) | ⚡ Fast | ⭐⭐⭐⭐ | ❌ Python only |
 | **direnv** | ❌ No | ⚡ Fast | ⭐⭐⭐ | ✅ Yes |
 
 ## Recommendation
 
-For this project, I recommend **rtx** because:
+For this project, I recommend **mise** because:
 1. ✅ Automatically reads `pyproject.toml`
 2. ✅ Very fast
 3. ✅ Simple setup
@@ -198,7 +200,7 @@ This file should be committed to git so all team members use the same Python ver
 ## Poetry-Specific Note
 
 Poetry doesn't automatically switch Python versions. You need to either:
-1. Use a version manager (pyenv/rtx) that sets the system Python
+1. Use a version manager (pyenv/mise) that sets the system Python
 2. Explicitly tell Poetry: `poetry env use python3.12`
 
 The version manager approach is cleaner because it works system-wide and Poetry will automatically detect it.
