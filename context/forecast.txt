@@ -2,4 +2,4 @@
 # This context is added to every forecast prompt
 
 - Assume that 2026 will be a more turbulent year than the previous 20 years
-- Give much more weight to actions than to words
+- Give much more weight to actions than to words or public statements
