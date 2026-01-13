@@ -320,10 +320,10 @@ class RuslanBot(ForecastBot):
             (c) A brief description of a scenario that results in a No outcome.
             (d) A brief description of a scenario that results in a Yes outcome.
 
-            You write your rationale remembering that good forecasters put extra weight on the status quo outcome since the world changes slowly most of the time.
             {self._get_conditional_disclaimer_if_necessary(question)}
+            Next, you write your rationale.
 
-            The last thing you write is your final answer as: "Probability: ZZ%", 0-100
+            The last thing you write is your final answer as: "Probability: ZZ.Z%", 0.1-99.9
             """
         )
 
@@ -342,7 +342,7 @@ class RuslanBot(ForecastBot):
             model=self.get_llm("parser", "llm"),
             num_validation_samples=self._structure_output_validation_samples,
         )
-        decimal_pred = max(0.01, min(0.99, binary_prediction.prediction_in_decimal))
+        decimal_pred = max(0.001, min(0.999, binary_prediction.prediction_in_decimal))
 
         logger.info(
             f"Forecasted URL {question.page_url} with prediction: {decimal_pred}."
@@ -389,9 +389,9 @@ class RuslanBot(ForecastBot):
             (c) A description of an scenario that results in an unexpected outcome.
 
             {self._get_conditional_disclaimer_if_necessary(question)}
-            You write your rationale remembering that (1) good forecasters put extra weight on the status quo outcome since the world changes slowly most of the time, and (2) good forecasters leave some moderate probability on most options to account for unexpected outcomes.
+            Next, you write your rationale.
 
-            The last thing you write is your final probabilities for the N options in this order {question.options} as:
+            The last thing you write is your final probabilities (0.1-99.9) for the N options in this order {question.options} as:
             Option_A: Probability_A
             Option_B: Probability_B
             ...
@@ -905,7 +905,7 @@ if __name__ == "__main__":
 
     template_bot = RuslanBot(
         research_reports_per_question=1,
-        predictions_per_research_report=2,
+        predictions_per_research_report=3,
         use_research_summary_to_forecast=False,
         publish_reports_to_metaculus=True,
         folder_to_save_reports_to=None,
