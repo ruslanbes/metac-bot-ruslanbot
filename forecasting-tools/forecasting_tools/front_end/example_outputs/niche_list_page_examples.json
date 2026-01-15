@@ -1,0 +1,356 @@
+[
+    {
+        "short_name": "WHO Emergency Declarations",
+        "input": {
+            "question_text": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization"
+        },
+        "output": {
+            "question_text": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization",
+            "niche_list_items": [
+                {
+                    "item_name": "2009 H1N1 Influenza Pandemic",
+                    "description": "The H1N1 influenza pandemic, also known as the swine flu, was declared a Public Health Emergency of International Concern in 2009 due to the rapid spread of the virus and the impact on global health.",
+                    "is_uncertain": false,
+                    "initial_citations": [
+                        "[2]",
+                        "[4]"
+                    ],
+                    "fact_check": {
+                        "criteria_assessments": [
+                            {
+                                "short_name": "WHO Declaration",
+                                "description": "Verify that the World Health Organization officially declared the event as a Public Health Emergency of International Concern (PHEIC).",
+                                "validity_assessment": "The 2009 H1N1 Influenza Pandemic was indeed declared a Public Health Emergency of International Concern by the WHO.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[4](https://www.who.int/director-general/speeches/detail/h1n1-influenza-situation#:~:text=WHO%20is%20collecting%20information%20as,with%20international%20trade%20and%20travel.)"
+                            },
+                            {
+                                "short_name": "Event Date",
+                                "description": "Ensure that the declaration date aligns with the official WHO announcement date for the PHEIC.",
+                                "validity_assessment": "The PHEIC for H1N1 was declared on April 25, 2009, aligning with the WHO announcement.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[7](https://www.who.int/news/item/27-04-2009-director-general-statement-following-the-second-meeting-of-the-emergency-committee#:~:text=WHO%20will%20facilitate%20the%20process,of%20the%20International%20Health%20Regulations.)"
+                            },
+                            {
+                                "short_name": "Global Impact",
+                                "description": "Confirm that the health event had significant international implications, justifying the PHEIC status.",
+                                "validity_assessment": "The H1N1 pandemic had significant international implications, affecting multiple countries and resulting in an estimated 100,000-400,000 deaths globally in the first year.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.who.int/europe/news-room/fact-sheets/item/evaluation-of-the-response-to-pandemic-(h1n1)-2009-in-the-european-region#:~:text=It%20was%20the%20first%20pandemic,in%20the%20first%20year%20alone.)-2009-in-the-european-region)"
+                            },
+                            {
+                                "short_name": "Response Measures",
+                                "description": "Check that the declaration led to specific international public health response measures coordinated by WHO.",
+                                "validity_assessment": "The declaration of H1N1 as a PHEIC led to the development of a pandemic vaccine and international health measures coordinated by WHO.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[7](https://www.who.int/news/item/27-04-2009-director-general-statement-following-the-second-meeting-of-the-emergency-committee#:~:text=WHO%20will%20facilitate%20the%20process,of%20the%20International%20Health%20Regulations.)"
+                            },
+                            {
+                                "short_name": "Resolution Status",
+                                "description": "Determine whether the PHEIC status was eventually lifted and verify the date and conditions under which it was resolved.",
+                                "validity_assessment": "There is insufficient information in the provided results to determine when the PHEIC status for the 2009 H1N1 Pandemic was lifted.",
+                                "is_valid_or_unknown": null,
+                                "citation_proving_assessment": null
+                            }
+                        ]
+                    },
+                    "type_description": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization"
+                },
+                {
+                    "item_name": "2014 Polio Resurgence",
+                    "description": "In 2014, the resurgence of polio in several countries led to its declaration as a Public Health Emergency of International Concern to enhance coordinated international response efforts.",
+                    "is_uncertain": false,
+                    "initial_citations": [
+                        "[3]",
+                        "[5]"
+                    ],
+                    "fact_check": {
+                        "criteria_assessments": [
+                            {
+                                "short_name": "WHO Declaration",
+                                "description": "Verify that the World Health Organization officially declared the event as a Public Health Emergency of International Concern (PHEIC).",
+                                "validity_assessment": "The World Health Organization declared the international spread of wild poliovirus as a Public Health Emergency of International Concern (PHEIC) on 5 May 2014.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.who.int/news/item/03-08-2014-who-statement-on-the-second-meeting-of-the-international-health-regulations-emergency-committee-concerning-the-international-spread-of-wild-poliovirus#:~:text=The%20above%20affected%20States%20Parties,was%20reported%20from%20the%20Americas.)"
+                            },
+                            {
+                                "short_name": "Event Date",
+                                "description": "Ensure that the declaration date aligns with the official WHO announcement date for the PHEIC.",
+                                "validity_assessment": "The declaration date of 5 May 2014 aligns with the official WHO announcement for the PHEIC.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.who.int/news/item/03-08-2014-who-statement-on-the-second-meeting-of-the-international-health-regulations-emergency-committee-concerning-the-international-spread-of-wild-poliovirus#:~:text=The%20above%20affected%20States%20Parties,was%20reported%20from%20the%20Americas.)"
+                            },
+                            {
+                                "short_name": "Global Impact",
+                                "description": "Confirm that the health event had significant international implications, justifying the PHEIC status.",
+                                "validity_assessment": "The spread of wild poliovirus in 2014 was considered an extraordinary event and a public health risk to other states, justifying the PHEIC status.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[12](https://www.who.int/news/item/03-08-2014-who-statement-on-the-second-meeting-of-the-international-health-regulations-emergency-committee-concerning-the-international-spread-of-wild-poliovirus#:~:text=Using%20the%20criteria%20applied%20to,the%20state%20of%20Sao%20Paolo.)"
+                            },
+                            {
+                                "short_name": "Response Measures",
+                                "description": "Check that the declaration led to specific international public health response measures coordinated by WHO.",
+                                "validity_assessment": "The declaration led to coordinated international responses, including vaccination requirements for travelers and sustained surveillance efforts.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[14](https://www.who.int/news/item/14-11-2014-who-statement-on-the-third-meeting-of-the-international-health-regulations-emergency-committee-regarding-the-international-spread-of-wild-poliovirus#:~:text=those%20undertaking%20urgent%20travel%20who,of%20international%20spread%20from%20Pakistan.)"
+                            },
+                            {
+                                "short_name": "Resolution Status",
+                                "description": "Determine whether the PHEIC status was eventually lifted and verify the date and conditions under which it was resolved.",
+                                "validity_assessment": "There is no information provided on the resolution status or the lifting of the PHEIC status for the 2014 polio resurgence.",
+                                "is_valid_or_unknown": null,
+                                "citation_proving_assessment": null
+                            }
+                        ]
+                    },
+                    "type_description": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization"
+                },
+                {
+                    "item_name": "2022 Monkeypox Outbreak",
+                    "description": "The 2022 monkeypox outbreak was declared a Public Health Emergency of International Concern due to its spread across multiple countries and potential for further international spread.",
+                    "is_uncertain": false,
+                    "initial_citations": [
+                        "[6]",
+                        "[9]"
+                    ],
+                    "fact_check": {
+                        "criteria_assessments": [
+                            {
+                                "short_name": "WHO Declaration",
+                                "description": "Verify that the World Health Organization officially declared the event as a Public Health Emergency of International Concern (PHEIC).",
+                                "validity_assessment": "The WHO declared the multi-country outbreak of monkeypox as a Public Health Emergency of International Concern (PHEIC).",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[9](https://www.who.int/news/item/23-07-2022-second-meeting-of-the-international-health-regulations-(2005)-(ihr)-emergency-committee-regarding-the-multi-country-outbreak-of-monkeypox#:~:text=constitutes%20a%20public%20health%20emergency,relevant%20articles%20of%20the%20IHR.)-(ihr)-emergency-committee-regarding-the-multi-country-outbreak-of-monkeypox)"
+                            },
+                            {
+                                "short_name": "Event Date",
+                                "description": "Ensure that the declaration date aligns with the official WHO announcement date for the PHEIC.",
+                                "validity_assessment": "The WHO announced the PHEIC on the outbreak of monkeypox on July 23, 2022.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[9](https://www.who.int/news/item/23-07-2022-second-meeting-of-the-international-health-regulations-(2005)-(ihr)-emergency-committee-regarding-the-multi-country-outbreak-of-monkeypox#:~:text=constitutes%20a%20public%20health%20emergency,relevant%20articles%20of%20the%20IHR.)-(ihr)-emergency-committee-regarding-the-multi-country-outbreak-of-monkeypox)"
+                            },
+                            {
+                                "short_name": "Global Impact",
+                                "description": "Confirm that the health event had significant international implications, justifying the PHEIC status.",
+                                "validity_assessment": "The outbreak had significant international implications, with challenges in transmission patterns across different regions, justifying the PHEIC status.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[9](https://www.who.int/news/item/23-07-2022-second-meeting-of-the-international-health-regulations-(2005)-(ihr)-emergency-committee-regarding-the-multi-country-outbreak-of-monkeypox#:~:text=constitutes%20a%20public%20health%20emergency,relevant%20articles%20of%20the%20IHR.)-(ihr)-emergency-committee-regarding-the-multi-country-outbreak-of-monkeypox)"
+                            },
+                            {
+                                "short_name": "Response Measures",
+                                "description": "Check that the declaration led to specific international public health response measures coordinated by WHO.",
+                                "validity_assessment": "Temporary Recommendations were issued to States Parties to manage and control the outbreak, indicating coordinated international response measures by WHO.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[10](https://www.who.int/news/item/23-07-2022-second-meeting-of-the-international-health-regulations-(2005)-(ihr)-emergency-committee-regarding-the-multi-country-outbreak-of-monkeypox#:~:text=All%20Temporary%20Recommendations%20are%20expected,human%20to%20human%20transmission.%201.b.)-(ihr)-emergency-committee-regarding-the-multi-country-outbreak-of-monkeypox)"
+                            },
+                            {
+                                "short_name": "Resolution Status",
+                                "description": "Determine whether the PHEIC status was eventually lifted and verify the date and conditions under which it was resolved.",
+                                "validity_assessment": "There is insufficient information in the provided sources to determine if and when the PHEIC status was lifted for the monkeypox outbreak.",
+                                "is_valid_or_unknown": null,
+                                "citation_proving_assessment": null
+                            }
+                        ]
+                    },
+                    "type_description": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization"
+                },
+                {
+                    "item_name": "2014 West Africa Ebola Outbreak",
+                    "description": "The Ebola outbreak in West Africa was declared a PHEIC in August 2014, highlighting the urgent need for international cooperation to control the disease's spread.",
+                    "is_uncertain": false,
+                    "initial_citations": [
+                        "Wikipedia",
+                        "WHO Press Releases"
+                    ],
+                    "fact_check": {
+                        "criteria_assessments": [
+                            {
+                                "short_name": "WHO Declaration",
+                                "description": "Verify that the World Health Organization officially declared the event as a Public Health Emergency of International Concern (PHEIC).",
+                                "validity_assessment": "The World Health Organization did declare the 2014 West Africa Ebola outbreak as a Public Health Emergency of International Concern.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.who.int/news/item/22-09-2014-statement-on-the-2nd-meeting-of-the-ihr-emergency-committee-regarding-the-2014-ebola-outbreak-in-west-africa#:~:text=adequate%20security%20measures%20for%20their,for%20international%20health%20care%20workers.)"
+                            },
+                            {
+                                "short_name": "Event Date",
+                                "description": "Ensure that the declaration date aligns with the official WHO announcement date for the PHEIC.",
+                                "validity_assessment": "The declaration of the Ebola outbreak as a PHEIC was made in 2014, aligning with the timeline of the outbreak.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.who.int/news/item/22-09-2014-statement-on-the-2nd-meeting-of-the-ihr-emergency-committee-regarding-the-2014-ebola-outbreak-in-west-africa#:~:text=adequate%20security%20measures%20for%20their,for%20international%20health%20care%20workers.)"
+                            },
+                            {
+                                "short_name": "Global Impact",
+                                "description": "Confirm that the health event had significant international implications, justifying the PHEIC status.",
+                                "validity_assessment": "The Ebola outbreak had significant international implications, including widespread transmission and the need for international response.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[2](https://www.who.int/news/item/22-09-2014-statement-on-the-2nd-meeting-of-the-ihr-emergency-committee-regarding-the-2014-ebola-outbreak-in-west-africa#:~:text=and%20access%20to%20adequate%20health,and%20monitoring%20of%20these%20recommendations.)"
+                            },
+                            {
+                                "short_name": "Response Measures",
+                                "description": "Check that the declaration led to specific international public health response measures coordinated by WHO.",
+                                "validity_assessment": "The declaration led to coordinated international response measures, including recommendations for health care services and travel advisories.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[5](https://www.who.int/news-room/detail/07-11-2014-statement-from-the-travel-and-transport-task-force-on-ebola-virus-disease-outbreak-in-west-africa#:~:text=The%20Travel%20and%20Transport%20Task,their%20humanitarian%20and%20economic%20hardship.)"
+                            },
+                            {
+                                "short_name": "Resolution Status",
+                                "description": "Determine whether the PHEIC status was eventually lifted and verify the date and conditions under which it was resolved.",
+                                "validity_assessment": "There is insufficient information from the provided sources to determine when the PHEIC status was lifted.",
+                                "is_valid_or_unknown": null,
+                                "citation_proving_assessment": null
+                            }
+                        ]
+                    },
+                    "type_description": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization"
+                },
+                {
+                    "item_name": "2016 Zika Virus Outbreak",
+                    "description": "The WHO declared the Zika virus outbreak a PHEIC in February 2016 due to its association with birth defects and neurological disorders.",
+                    "is_uncertain": false,
+                    "initial_citations": [
+                        "Wikipedia",
+                        "WHO Announcements"
+                    ],
+                    "fact_check": {
+                        "criteria_assessments": [
+                            {
+                                "short_name": "WHO Declaration",
+                                "description": "Verify that the World Health Organization officially declared the event as a Public Health Emergency of International Concern (PHEIC).",
+                                "validity_assessment": "The World Health Organization officially declared the 2016 Zika Virus Outbreak as a Public Health Emergency of International Concern.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.who.int/en/news-room/detail/01-02-2016-who-director-general-summarizes-the-outcome-of-the-emergency-committee-regarding-clusters-of-microcephaly-and-guillain-barr%C3%A9-syndrome#:~:text=The%20lack%20of%20vaccines%20and,Health%20Emergency%20of%20International%20Concern.)"
+                            },
+                            {
+                                "short_name": "Event Date",
+                                "description": "Ensure that the declaration date aligns with the official WHO announcement date for the PHEIC.",
+                                "validity_assessment": "The declaration date of February 1, 2016, aligns with the WHO's official announcement for the PHEIC.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[3](https://www.who.int/en/news-room/detail/01-02-2016-who-director-general-summarizes-the-outcome-of-the-emergency-committee-regarding-clusters-of-microcephaly-and-guillain-barr%C3%A9-syndrome#:~:text=In%20their%20view%2C%20a%20coordinated,at%20risk%2C%20especially%20during%20pregnancy.)"
+                            },
+                            {
+                                "short_name": "Global Impact",
+                                "description": "Confirm that the health event had significant international implications, justifying the PHEIC status.",
+                                "validity_assessment": "The Zika virus outbreak had significant international implications due to its spread and association with microcephaly and neurological disorders.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[13](https://www.who.int/en/news-room/detail/01-02-2016-who-director-general-summarizes-the-outcome-of-the-emergency-committee-regarding-clusters-of-microcephaly-and-guillain-barr%C3%A9-syndrome#:~:text=All%20agreed%20on%20the%20urgent,other%20parts%20of%20the%20world.)"
+                            },
+                            {
+                                "short_name": "Response Measures",
+                                "description": "Check that the declaration led to specific international public health response measures coordinated by WHO.",
+                                "validity_assessment": "WHO coordinated international response measures including surveillance, mosquito control, and expedited development of diagnostic tests and vaccines.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[9](https://www.who.int/en/news-room/detail/01-02-2016-who-director-general-summarizes-the-outcome-of-the-emergency-committee-regarding-clusters-of-microcephaly-and-guillain-barr%C3%A9-syndrome#:~:text=I%20am%20now%20declaring%20that,at%2Drisk%20individuals%2C%20especially%20pregnant%20women.)"
+                            },
+                            {
+                                "short_name": "Resolution Status",
+                                "description": "Determine whether the PHEIC status was eventually lifted and verify the date and conditions under which it was resolved.",
+                                "validity_assessment": "The PHEIC status for the Zika virus outbreak was lifted on November 18, 2016, as part of the transition to longer-term response mechanisms.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[15](https://www.who.int/en/news-room/detail/18-11-2016-fifth-meeting-of-the-emergency-committee-under-the-international-health-regulations-(2005)-regarding-microcephaly-other-neurological-disorders-and-zika-virus#:~:text=The%20EC%20recommended%20that%20this,Emergency%20of%20International%20Concern%20%28PHEIC%29.)-regarding-microcephaly-other-neurological-disorders-and-zika-virus)"
+                            }
+                        ]
+                    },
+                    "type_description": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization"
+                },
+                {
+                    "item_name": "2018-2020 Kivu Ebola Epidemic",
+                    "description": "In July 2019, the WHO declared the Ebola outbreak in the Democratic Republic of the Congo a PHEIC, following its prolonged spread and impact on international borders.",
+                    "is_uncertain": false,
+                    "initial_citations": [
+                        "Wikipedia",
+                        "WHO Official Reports"
+                    ],
+                    "fact_check": {
+                        "criteria_assessments": [
+                            {
+                                "short_name": "WHO Declaration",
+                                "description": "Verify that the World Health Organization officially declared the event as a Public Health Emergency of International Concern (PHEIC).",
+                                "validity_assessment": "The WHO did declare the 2018-2020 Kivu Ebola Epidemic as a Public Health Emergency of International Concern.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.savethechildren.org/us/about-us/media-and-news/2019-press-releases/ebola-not-enough-being-done#:~:text=More%20than%201%2C000%20Ugandan%20health,the%20rights%20of%20children%20worldwide.)-emergency-committee-for-ebola-virus-disease-in-the-democratic-republic-of-the-congo)"
+                            },
+                            {
+                                "short_name": "Event Date",
+                                "description": "Ensure that the declaration date aligns with the official WHO announcement date for the PHEIC.",
+                                "validity_assessment": "The WHO declared the Kivu Ebola epidemic a PHEIC on July 17, 2019, which aligns with the event dates.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.savethechildren.org/us/about-us/media-and-news/2019-press-releases/ebola-not-enough-being-done#:~:text=More%20than%201%2C000%20Ugandan%20health,the%20rights%20of%20children%20worldwide.)-emergency-committee-for-ebola-virus-disease-in-the-democratic-republic-of-the-congo)"
+                            },
+                            {
+                                "short_name": "Global Impact",
+                                "description": "Confirm that the health event had significant international implications, justifying the PHEIC status.",
+                                "validity_assessment": "The Kivu Ebola epidemic had significant international implications due to the potential for cross-border spread and the high mortality rate.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[6](https://www.savethechildren.org/us/about-us/media-and-news/2019-press-releases/ebola-not-enough-being-done#:~:text=%E2%80%9CThe%20death%20rate%20of%20this,what%20to%20do%20in%20response.)"
+                            },
+                            {
+                                "short_name": "Response Measures",
+                                "description": "Check that the declaration led to specific international public health response measures coordinated by WHO.",
+                                "validity_assessment": "The PHEIC declaration led to international public health response measures coordinated by WHO and international partners.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[6](https://www.savethechildren.org/us/about-us/media-and-news/2019-press-releases/ebola-not-enough-being-done#:~:text=%E2%80%9CThe%20death%20rate%20of%20this,what%20to%20do%20in%20response.)"
+                            },
+                            {
+                                "short_name": "Resolution Status",
+                                "description": "Determine whether the PHEIC status was eventually lifted and verify the date and conditions under which it was resolved.",
+                                "validity_assessment": "The PHEIC status for the Kivu Ebola epidemic was lifted on June 26, 2020, following a decline in cases.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[1](https://www.savethechildren.org/us/about-us/media-and-news/2019-press-releases/ebola-not-enough-being-done#:~:text=More%20than%201%2C000%20Ugandan%20health,the%20rights%20of%20children%20worldwide.)"
+                            }
+                        ]
+                    },
+                    "type_description": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization"
+                },
+                {
+                    "item_name": "COVID-19",
+                    "description": "On January 30, 2020, the WHO declared the outbreak a Public Health Emergency of International Concern (PHEIC) due to the novel coronavirus, and later declared it a pandemic on March 11, 2020.",
+                    "is_uncertain": false,
+                    "initial_citations": [
+                        "[14](https://en.wikipedia.org/wiki/World_Health_Organization's_response_to_the_COVID-19_pandemic#:~:text=On%2020%20January%2C%20the%20WHO,infected%20with%20the%20novel%20virus.)"
+                    ],
+                    "fact_check": {
+                        "criteria_assessments": [
+                            {
+                                "short_name": "WHO Declaration",
+                                "description": "Verify that the World Health Organization officially declared the event as a Public Health Emergency of International Concern (PHEIC).",
+                                "validity_assessment": "The World Health Organization officially declared COVID-19 a Public Health Emergency of International Concern (PHEIC) on January 30, 2020.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[6](https://en.wikipedia.org/wiki/Public_health_emergency_of_international_concern#:~:text=PHEIC%20is%20defined%20as%3A%20an,PHEIC%20events%20to%20the%20WHO.)"
+                            },
+                            {
+                                "short_name": "Event Date",
+                                "description": "Ensure that the declaration date aligns with the official WHO announcement date for the PHEIC.",
+                                "validity_assessment": "The declaration date aligns with the official WHO announcement date for the COVID-19 PHEIC, which was January 30, 2020.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[6](https://en.wikipedia.org/wiki/Public_health_emergency_of_international_concern#:~:text=PHEIC%20is%20defined%20as%3A%20an,PHEIC%20events%20to%20the%20WHO.)"
+                            },
+                            {
+                                "short_name": "Global Impact",
+                                "description": "Confirm that the health event had significant international implications, justifying the PHEIC status.",
+                                "validity_assessment": "COVID-19 had significant international implications, including widespread transmission and impact on global health, justifying the PHEIC status.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[3](https://en.wikipedia.org/wiki/Public_health_emergency_of_international_concern#:~:text=%22%20The%20formal%20end%20of,in%20the%20International%20Health%20Regulations.)"
+                            },
+                            {
+                                "short_name": "Response Measures",
+                                "description": "Check that the declaration led to specific international public health response measures coordinated by WHO.",
+                                "validity_assessment": "The declaration of COVID-19 as a PHEIC led to coordinated international public health response measures, including increased surveillance and containment strategies.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[11](https://www.who.int/news/item/23-01-2020-statement-on-the-meeting-of-the-international-health-regulations-(2005)-emergency-committee-regarding-the-outbreak-of-novel-coronavirus-(2019-ncov)#:~:text=Enhance%20rational%20public%20health%20measures,care%20worker%20infections%20or%20clusters.)-emergency-committee-regarding-the-outbreak-of-novel-coronavirus-(2019-ncov))"
+                            },
+                            {
+                                "short_name": "Resolution Status",
+                                "description": "Determine whether the PHEIC status was eventually lifted and verify the date and conditions under which it was resolved.",
+                                "validity_assessment": "The PHEIC status for COVID-19 was eventually lifted in May 2023.",
+                                "is_valid_or_unknown": true,
+                                "citation_proving_assessment": "[7](https://en.wikipedia.org/wiki/Public_health_emergency_of_international_concern#:~:text=The%20emergency%20committee%20convened%20its,planet%20during%20the%2021st%20century.)"
+                            }
+                        ]
+                    },
+                    "type_description": "Times there has been a declaration of a public health emergency of international concern by the World Health Organization"
+                }
+            ],
+            "cost": 0.6386200000000003
+        }
+    }
+]

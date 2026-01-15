@@ -1,0 +1,32 @@
+[default]
+extend-ignore-identifiers-re = [
+    "AttributeID.*Supress.*",
+]
+
+[default.extend-identifiers]
+AttributeIDSupressMenu = "AttributeIDSupressMenu"
+
+[default.extend-words]
+# words that should not be corrected
+Metaculus = "Metaculus"
+dot_acn = ".acn"
+ba = "ba"
+ned = "Ned"
+ND = "ND"
+arange = "arange"
+Aer = "Aer"
+AFg6K7h4fhy2 = "AFg6K7h4fhy2"
+
+[files]
+extend-exclude = [
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    "*.bib",
+    "*.html",
+    "*.js",
+    "*.csl",
+    "*.css",
+    "*.ipynb",
+    "*.json",
+    "*.jsonl",
+]

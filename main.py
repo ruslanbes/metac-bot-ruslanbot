@@ -142,7 +142,6 @@ class RuslanBot(ForecastBot):
                 ]
                 return "\n".join(lines) if lines else ""
             else:
-                logger.warning(f"Context file not found: {file_path}. Using empty context.")
                 return ""
         except Exception as e:
             logger.warning(f"Error loading context file {file_path}: {e}. Using empty context.")
@@ -236,18 +235,18 @@ class RuslanBot(ForecastBot):
 
             prompt = clean_indents(
                 f"""
-                You are an assistant to a superforecaster.
-                The superforecaster will give you a question they intend to forecast on.
-                Generate a concise but detailed rundown of the most relevant news, including if the question would resolve Yes or No based on current information.
-                You do not produce forecasts yourself.
+                This is a question from Metaculus.
+                Generate a concise but detailed rundown of the most relevant news affecting the question resolution.
+                Write how the question would resolve based on the current state of the world.
+                Do not produce a forecast yourself.
 
                 Question:
                 {question.question_text}
 
-                This question's outcome will be determined by the specific criteria below:
+                Resolution criteria:
                 {question.resolution_criteria}
 
-                Pay attention to these details:
+                Fine print:
                 {question.fine_print}
                 {research_context_section}
                 """
@@ -290,40 +289,39 @@ class RuslanBot(ForecastBot):
         forecast_context_section = ""
         merged_forecast_context = self._get_forecast_context(question)
         if merged_forecast_context:
-            forecast_context_section = f"\n\nAdditional Forecasting Guidelines:\n{merged_forecast_context}\n"
+            forecast_context_section = f"\n\nAdditional forecasting guidelines:\n{merged_forecast_context}\n"
 
         prompt = clean_indents(
             f"""
-            You are a professional forecaster interviewing for a job.
-
-            Your interview question is:
+            Create a forecast for the following question from Metaculus:
             {question.question_text}
 
-            Question background:
+            Background info:
             {question.background_info}
 
-
-            This question's outcome will be determined by the specific criteria below. These criteria have not yet been satisfied:
+            Resolution criteria:
             {question.resolution_criteria}
 
+            Fine print:
             {question.fine_print}
 
-
-            Your research assistant says:
+            Research report:
             {research}
 
             Today is {datetime.now().strftime("%Y-%m-%d")}.
+            
             {forecast_context_section}
-            Before answering you write:
+            
+            Write:
             (a) The time left until the outcome to the question is known.
             (b) The status quo outcome if nothing changed.
             (c) A brief description of a scenario that results in a No outcome.
             (d) A brief description of a scenario that results in a Yes outcome.
 
             {self._get_conditional_disclaimer_if_necessary(question)}
-            Next, you write your rationale.
+            Next, write your forecast rationale.
 
-            The last thing you write is your final answer as: "Probability: ZZ.Z%", 0.1-99.9
+            Lastly, write your final forecast as: "Probability: ZZ.Z%", 0.1-99.9
             """
         )
 
@@ -362,36 +360,36 @@ class RuslanBot(ForecastBot):
 
         prompt = clean_indents(
             f"""
-            You are a professional forecaster interviewing for a job.
-
-            Your interview question is:
+            Create a forecast for the following question from Metaculus:
             {question.question_text}
 
             The options are: {question.options}
 
-
-            Background:
+            Background info:
             {question.background_info}
 
+            Resolution criteria:
             {question.resolution_criteria}
 
+            Fine print:
             {question.fine_print}
 
-
-            Your research assistant says:
+            Research report:
             {research}
 
             Today is {datetime.now().strftime("%Y-%m-%d")}.
+
             {forecast_context_section}
-            Before answering you write:
+
+            Before answering, write:
             (a) The time left until the outcome to the question is known.
             (b) The status quo outcome if nothing changed.
             (c) A description of an scenario that results in an unexpected outcome.
 
             {self._get_conditional_disclaimer_if_necessary(question)}
-            Next, you write your rationale.
+            Next, write your rationale.
 
-            The last thing you write is your final probabilities (0.1-99.9) for the N options in this order {question.options} as:
+            Lastly, write your final probabilities (0.1-99.9) for the N options in this order {question.options} as:
             Option_A: Probability_A
             Option_B: Probability_B
             ...
@@ -410,8 +408,8 @@ class RuslanBot(ForecastBot):
             Make sure that all option names are one of the following:
             {question.options}
 
-            The text you are parsing may prepend these options with some variation of "Option" which you should remove if not part of the option names I just gave you.
-            Additionally, you may sometimes need to parse a 0% probability. Please do not skip options with 0% but rather make it an entry in your final list with 0% probability.
+            The text you are parsing may prepend these options with some variation of "Option" which you should remove if it's not part of the option names.
+            Additionally, you may sometimes need to parse a 0% probability. Do not skip options with 0% but rather make it an entry in your final list with 0% probability.
             """
         )
         reasoning = await self.get_llm("default", "llm").invoke(prompt)
@@ -447,25 +445,28 @@ class RuslanBot(ForecastBot):
 
         prompt = clean_indents(
             f"""
-            You are a professional forecaster interviewing for a job.
+            Create a forecast for the following question from Metaculus:
 
-            Your interview question is:
             {question.question_text}
 
-            Background:
+            Background info:
             {question.background_info}
 
+            Resolution criteria:
             {question.resolution_criteria}
 
+            Fine print:
             {question.fine_print}
 
             Units for answer: {question.unit_of_measure if question.unit_of_measure else "Not stated (please infer this)"}
 
-            Your research assistant says:
+            Research report:
             {research}
 
             Today is {datetime.now().strftime("%Y-%m-%d")}.
+
             {forecast_context_section}
+            
             {lower_bound_message}
             {upper_bound_message}
 
@@ -552,23 +553,25 @@ class RuslanBot(ForecastBot):
 
         prompt = clean_indents(
             f"""
-            You are a professional forecaster interviewing for a job.
-
-            Your interview question is:
+            Create a forecast for the following question from Metaculus:
             {question.question_text}
 
-            Background:
+            Background info:
             {question.background_info}
 
+            Resolution criteria:
             {question.resolution_criteria}
 
+            Fine print:
             {question.fine_print}
 
-            Your research assistant says:
+            Research report:
             {research}
 
             Today is {datetime.now().strftime("%Y-%m-%d")}.
+
             {forecast_context_section}
+
             {lower_bound_message}
             {upper_bound_message}
 
@@ -771,6 +774,7 @@ class RuslanBot(ForecastBot):
         self, question: MetaculusQuestion
     ) -> str:
         if question.conditional_type not in ["yes", "no"]:
+            logger.warning(f"Conditional question {question.id_of_question} is not a yes or no question. Skipping.")
             return ""
         return clean_indents(
             """

@@ -1,0 +1,57 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "forecasting-tools project container",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"build":{
+		"dockerfile": "Dockerfile"
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "sh .devcontainer/postinstall.sh",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"anysphere.remote-containers", // This is cursor specific dev container extension. There is a vscode specific one we might want to try to support. I'm not sure if this also supports normal vscode.
+				"ms-python.python", // Do we want anysphere.cursorpyright instead?
+				"ms-python.vscode-pylance",
+				"ms-python.isort",
+				"ms-python.debugpy",
+				"ms-python.black-formatter",
+				"sonarsource.sonarlint-vscode",
+				"lehoanganh298.json-lines-viewer",
+				"donjayamanne.githistory",
+				"mhutchie.git-graph",
+				"mechatroner.rainbow-csv",
+				"tamasfe.even-better-toml",
+				"ms-toolsai.jupyter",
+				"anthropic.claude-code",
+				"coderabbit.coderabbit-vscode",
+				"oderwat.indent-rainbow",
+				"janisdd.vscode-edit-csv"
+			]
+		}
+	},
+
+	"features": {
+		"ghcr.io/joshuanianji/devcontainer-features/github-cli-persistence:1": {}, // Should persist github credentials (but maybe only for gh cli?)
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/java:1": {}
+	},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+
+	// Forces using public DNS servers
+	// (this may not be necessary, but is intended to prevent needing to
+	// rebuild the container or restart Docker when a network change is made)
+	"dns": ["8.8.8.8", "1.1.1.1"]
+}
