@@ -1,3 +1,5 @@
 # Geopolitics Forecast Context
 
 - Assign higher probability to extraordinary geopolitical events happening
+- Assume that Trump will rule in an authoritarian style
+- Assume that public political statements might serve to conceal true goals, especially statements from Trump
