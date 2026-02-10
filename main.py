@@ -30,6 +30,7 @@ from forecasting_tools import (
     clean_indents,
     structure_output,
 )
+from llm_config import DEFAULT_LLMS
 
 dotenv.load_dotenv()
 logger = logging.getLogger(__name__)
@@ -915,17 +916,7 @@ if __name__ == "__main__":
         folder_to_save_reports_to=None,
         skip_previously_forecasted_questions=True,
         extra_metadata_in_explanation=True,
-        llms={  # choose your model names or GeneralLlm llms here, otherwise defaults will be chosen for you
-            "default": GeneralLlm(
-                model="openrouter/google/gemini-3-pro-preview",  # Using Gemini 3 Pro via OpenRouter
-                temperature=0.3,
-                timeout=160,
-                allowed_tries=2,
-            ),
-            "summarizer": "openrouter/google/gemini-3-flash-preview",  # Optional: use Gemini for summarizer (not used now)
-            "researcher": "openrouter/perplexity/sonar",  # Use AskNews for research, or change to other model
-            "parser": "openrouter/google/gemini-3-flash-preview",  # Optional: use Gemini for parsing
-        },
+        llms=DEFAULT_LLMS,
     )
 
     client = MetaculusClient()

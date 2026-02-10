@@ -201,3 +201,18 @@ ask = AsyncAskNewsSDK(
     client_secret=client_secret,
     scopes=["chat", "news", "stories", "analytics"],
 )
+```
+
+# Todos
+
+- need a minibench tweak to read the source forecast (check url). Should only work for minibench - custom tournament-dependent context
+- General guide: follow any links in the question text, background info or fine print
+- Read comments and summarize them (separate summarizer bot)
+- Read key factors
+- Extract model config to external properties or env vars
+- Try AskNews, only locally
+- Fix explanations. They are too long now
+- Add fact check for bots? Maybe via extra llm
+- Forecaster addon: You are an expert in these areas:
+- Be radically precise. No fluff. Pure information only
+- Test https://www.metaculus.com/questions/42079/largest-gdpr-fine-till-2031/ - currently putting weight on the wrong value
